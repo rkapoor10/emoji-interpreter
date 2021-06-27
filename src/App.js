@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
 var color = "blue";
-var likeCounter = 0;
 
 var emojiDictionary = {
   "😁": "Beaming Face with Smiling Eyes",
@@ -45,11 +44,13 @@ var emojiDictionary = {
 var emojisWeKnow = Object.keys(emojiDictionary);
 
 export default function App() {
-  function likeClickHandler() {
-    likeCounter = likeCounter + 1;
-    console.log("clicked!", likeCounter);
-    setLikeCounter(likeCounter);
+  function emojiClickHandler(emoji) {
+    setEmoji(emoji);
+    var meaning = emojiDictionary[emoji];
+    setUserInput(meaning);
   }
+
+  var [emoji, setEmoji] = useState("");
 
   var [userInput, setUserInput] = useState("");
 
@@ -67,14 +68,23 @@ export default function App() {
       <h2>
         {emojisWeKnow.map(function (emoji) {
           return (
-            <span style={{ fontSize: "2rem" }} key={emoji}>
+            <span
+              onClick={() => emojiClickHandler(emoji)}
+              style={{
+                fontSize: "2rem",
+                padding: "1rem",
+                outerWidth: "80%"
+              }}
+              key={emoji}
+            >
               {emoji}
             </span>
           );
         })}
       </h2>
       <input onChange={onChangeHandler}></input>
-      <div style={{ color }}>{userInput}</div>
+      <div style={{ fontSize: "3rem" }}>{emoji}</div>
+      <div style={{ color, fontSize: "1.5rem" }}>Meaning: {userInput}</div>
     </div>
   );
 }
