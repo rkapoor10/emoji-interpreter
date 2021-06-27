@@ -57,6 +57,7 @@ export default function App() {
   function onChangeHandler(event) {
     var userInput = event.target.value;
     var meaning = emojiDictionary[userInput];
+    setEmoji(userInput);
     if (meaning === undefined) meaning = "emoji not present in database";
     setUserInput(meaning);
   }
@@ -64,7 +65,9 @@ export default function App() {
   return (
     <div className="App">
       <h1 style={{ color, backgroundColor: "yellow" }}>EMOJI INTERPRETER</h1>
+
       <h2>Paste emoji in the tab below or click the emoji to know meaning </h2>
+
       <h2>
         {emojisWeKnow.map(function (emoji) {
           return (
@@ -83,7 +86,9 @@ export default function App() {
         })}
       </h2>
       <input onChange={onChangeHandler}></input>
+
       <div style={{ fontSize: "3rem" }}>{emoji}</div>
+
       <div style={{ color, fontSize: "1.5rem" }}>Meaning: {userInput}</div>
     </div>
   );
