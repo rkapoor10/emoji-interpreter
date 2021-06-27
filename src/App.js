@@ -89,7 +89,7 @@ export default function App() {
 
       <div style={{ fontSize: "3rem" }}>{emoji}</div>
 
-      <div style={{ color, fontSize: "1.5rem" }}>Meaning: {userInput}</div>
+      <div style={{ color, fontSize: "1.5rem" }}>{userInput}</div>
     </div>
   );
 }
